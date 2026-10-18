@@ -2,10 +2,14 @@ package dsu;
 
 public class DisjointSet {
     private final int[]parent;
-    public DisjointSet(int size){
-        parent=new int[size];
-        for(int i=0;i<size;i++){
-            parent[i]=i;
+    private final int[] size;
+    public DisjointSet(int vertexCount) {
+        parent = new int[vertexCount];
+        size = new int[vertexCount];
+
+        for (int i = 0; i < vertexCount; i++) {
+            parent[i] = i;
+            size[i] = 1;
         }
     }
     public int find (int vertex){
@@ -14,12 +18,20 @@ public class DisjointSet {
         }
         return vertex;
     }
-    public void union(int first,int second){
-        int firstRoot=find(first);
-        int secondRoot=find(second);
-        if(firstRoot==secondRoot){
+    public void union(int first, int second) {
+        int firstRoot = find(first);
+        int secondRoot = find(second);
+
+        if (firstRoot == secondRoot) {
             return;
         }
-        parent[secondRoot]=firstRoot; 
+
+        if (size[firstRoot] < size[secondRoot]) {
+            parent[firstRoot] = secondRoot;
+            size[secondRoot] += size[firstRoot];
+        } else {
+            parent[secondRoot] = firstRoot;
+            size[firstRoot] += size[secondRoot];
+        }
     }
 }

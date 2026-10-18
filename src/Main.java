@@ -40,5 +40,13 @@ public class Main {
         check.union(3, 0);
 
         System.out.println("Root of 3: " + check.find(3));
+        DisjointSet compressed = new DisjointSet(4);
+
+        compressed.union(0, 1);
+        compressed.union(2, 3);
+        compressed.union(0, 2);
+
+        System.out.println("First find: " + compressed.find(3));
+        System.out.println("Second find: " + compressed.find(3));
     }
 }

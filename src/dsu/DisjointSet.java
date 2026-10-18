@@ -12,11 +12,12 @@ public class DisjointSet {
             size[i] = 1;
         }
     }
-    public int find (int vertex){
-        while (parent[vertex]!=vertex){
-            vertex=parent[vertex];
+    public int find(int vertex) {
+        if (parent[vertex] != vertex) {
+            parent[vertex] = find(parent[vertex]);
         }
-        return vertex;
+
+        return parent[vertex];
     }
     public void union(int first, int second) {
         int firstRoot = find(first);

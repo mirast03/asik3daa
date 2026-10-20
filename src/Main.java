@@ -6,6 +6,7 @@ import mst.MstResult;
 import mst.Prim;
 import graph.DirectedGraph;
 import topo.TopologicalSort;
+import scc.Kosaraju;
 
 public class Main {
     public static void main(String[] args) {
@@ -57,6 +58,14 @@ public class Main {
         } catch (IllegalStateException exception) {
             System.out.println(exception.getMessage());
         }
+        DirectedGraph sccGraph = new DirectedGraph(5);
+        sccGraph.addEdge(0, 1);
+        sccGraph.addEdge(1, 2);
+        sccGraph.addEdge(2, 0);
+        sccGraph.addEdge(2, 3);
+        sccGraph.addEdge(3, 4);
+        sccGraph.addEdge(4, 3);
+        System.out.println("SCC: " + new Kosaraju().findSCC(sccGraph));
 
     }
 }

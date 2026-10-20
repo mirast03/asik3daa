@@ -7,6 +7,8 @@ import mst.Prim;
 import graph.DirectedGraph;
 import topo.TopologicalSort;
 import scc.Kosaraju;
+import shortestpath.Dijkstra;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -66,6 +68,15 @@ public class Main {
         sccGraph.addEdge(3, 4);
         sccGraph.addEdge(4, 3);
         System.out.println("SCC: " + new Kosaraju().findSCC(sccGraph));
+        Dijkstra.Result routes = new Dijkstra().shortestPaths(city, 0);
+        for (int vertex = 0; vertex < city.getVertexCount(); vertex++) {
+            if (routes.isReachable(vertex)) {
+                System.out.println("0 -> " + vertex + ": distance="
+                        + routes.distanceTo(vertex) + ", path=" + routes.pathTo(vertex));
+            } else {
+                System.out.println("0 -> " + vertex + ": unreachable");
+            }
+        }
 
     }
 }

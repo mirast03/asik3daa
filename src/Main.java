@@ -4,9 +4,7 @@ import dsu.DisjointSet;
 import mst.Kruskal;
 import mst.MstResult;
 import mst.Prim;
-
-
-
+import graph.DirectedGraph;
 public class Main {
     public static void main(String[] args) {
 
@@ -40,6 +38,14 @@ public class Main {
         System.out.println("Prim weight: " + primResult.getTotalWeight());
         System.out.println("MST weights match: "
                 + (primResult.getTotalWeight() == kruskalResult.getTotalWeight()));
+        DirectedGraph tasks = new DirectedGraph(5);
+        tasks.addEdge(0, 1);
+        tasks.addEdge(1, 2);
+        tasks.addEdge(1, 3);
+        tasks.addEdge(2, 4);
+        tasks.addEdge(3, 4);
+        System.out.println("Neighbors of 1: " + tasks.getNeighbors(1));
+
 
     }
 }

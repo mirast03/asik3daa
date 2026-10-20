@@ -5,6 +5,8 @@ import mst.Kruskal;
 import mst.MstResult;
 import mst.Prim;
 import graph.DirectedGraph;
+import topo.TopologicalSort;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -45,7 +47,16 @@ public class Main {
         tasks.addEdge(2, 4);
         tasks.addEdge(3, 4);
         System.out.println("Neighbors of 1: " + tasks.getNeighbors(1));
-
+        System.out.println("Task order: " + new TopologicalSort().sort(tasks));
+        DirectedGraph cycleCheck = new DirectedGraph(2);
+        cycleCheck.addEdge(0, 1);
+        cycleCheck.addEdge(1, 0);
+        try {
+            new TopologicalSort().sort(cycleCheck);
+            throw new AssertionError("Cycle was not detected");
+        } catch (IllegalStateException exception) {
+            System.out.println(exception.getMessage());
+        }
 
     }
 }

@@ -3,6 +3,8 @@ import graph.Graph;
 import dsu.DisjointSet;
 import mst.Kruskal;
 import mst.MstResult;
+import mst.Prim;
+
 
 
 public class Main {
@@ -34,5 +36,10 @@ public class Main {
 
         sets.union(0, 1);
         sets.union(2, 3);
+        MstResult primResult = new Prim().findMST(city);
+        System.out.println("Prim weight: " + primResult.getTotalWeight());
+        System.out.println("MST weights match: "
+                + (primResult.getTotalWeight() == kruskalResult.getTotalWeight()));
+
     }
 }

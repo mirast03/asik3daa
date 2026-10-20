@@ -12,10 +12,10 @@ public class Edge {
     public int getFrom(){
         return from;
     }
-    public int getTo(){
-        return to;
-    }
-    public int getWeight(){
-        return weight;
+    public int getTo(){return to; }
+    public int getWeight(){return weight;}
+    @Override
+    public String toString() {
+        return from + " - " + to + ", weight: " + weight;
     }
 }
